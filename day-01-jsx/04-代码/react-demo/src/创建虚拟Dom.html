@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    import ReactDOM from 'react-dom' import React from 'react'
+    <script>
+      // 创建react元素（虚拟DOM）
+      // React.createElement：
+      // 参数1：标签名
+      // 参数2：标签属性,可以是一个对象{id:'box',title:'hello'}，也可以是null
+      // 参数3：标签内容
+
+      const element = React.createElement('h1', null, 'Hello, React!')
+      // 将react元素渲染到页面中
+      //   ReactDOM.render参数1：要渲染的react元素：虚拟DOM
+      // 参数2：渲染到哪里，需要一个DOM的挂载点，真实DOM
+      ReactDOM.render(element, document.getElementById('root'))
+      React.createElement('h1')
+    </script>
+  </body>
+</html>

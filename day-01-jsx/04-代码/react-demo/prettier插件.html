@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+            // jsx代码可以随意缩进，代码会比较乱
+            // vscode安装格式化工具prettier插件，代码校验 工具eslint
+            react项目配置规则比较宽松，人资项目eslint比较严格，所以只要eslint就可以了，如果再用prettier就会冲突。
+            但是react没有那么严格，所以还需要prettier插件。
+            安装prettier插件，然后配置prettier.config.js文件
+          //   保存时候格式化
+            "editor.formatOnSave": true,
+      // 不要有分号
+            "prettier.semi": false,
+          //   单引号
+            "prettier.singleQuote": true,
+          //   vscode默认格式化工具
+            "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+          如果想要在js中写ul,按住tab键自动出现标签， 可以加上配置
+          "emmet.triggerExtensionOnTab": true,
+          // 在js文件中写react有个提示
+          "emmet.showAbbreviationSuggestions": true,
+          "emmet.includeLanguages": {
+              "javascript": "javascriptreact"
+          }
+    </script>
+  </body>
+</html>
