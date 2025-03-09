@@ -17,6 +17,7 @@
       function reducer(state = 0, action) {
         switch (action.type) {
           case 'add':
+            // 写return函数就结束了
             return state + 1
           case 'sub':
             return state - 1
@@ -38,6 +39,7 @@
       })
 
       btns[0].onclick = function () {
+        // 数据会变，但是不会重新渲染。需要手动去订阅以后操作dom
         store.dispatch({ type: 'add' })
       }
 

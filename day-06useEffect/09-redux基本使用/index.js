@@ -21,12 +21,14 @@ const store = createStore(reducer)
 
 // store操作redux
 
-// 订阅store状态的变化，只要状态发生变化，
-// 返回的函数，用于取消订阅
+如果不想要每次打印，可以订阅store状态的变化，只要状态发生变化，就会执行回调函数
+react redux如果用在组件里，不需要订阅，组件会自动更新
+// 订阅store状态的变化，只要状态发生变化，就会执行回调函数
+// 订阅函数有一个返回的结果函数，用于取消订阅
 const unSubscribe = store.subscribe(function () {
   console.log(store.getState())
 })
-
+store里面的数据不能直接改，只能是dispatch修改
 store.dispatch({ type: 'add' })
 
 // console.log(store.getState())
@@ -39,5 +41,5 @@ store.dispatch({ type: 'addMore', num: 10 })
 
 // console.log(store.getState())
 unSubscribe()
-
+取消订阅以后，就不再打印了
 store.dispatch({ type: 'addMore', num: 10 })
