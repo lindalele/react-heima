@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 对象有一个引用
+      // var o = {
+      //   name: 'zs',
+      //   age: 18
+      // }
+      // // 对象有两个引用
+      // var o2 = o
+      // // 引用计数：垃圾回收器自动回收那些0引用的数据
+      // o = 1
+
+      // // 对象还有1一个引用
+
+      // o2 = null
+      // o  o2.o
+      // window.o
+      // var o = {
+      //   o2: o2
+      // }
+
+      // // o2  o.o2
+      // // window.o2
+      // var o2 = {
+      //   o: o
+      // }
+
+      function fn() {
+        var a = 11
+        return function inner() {
+          console.log(a)
+        }
+      }
+
+      var inner = fn()
+
+      inner = null
+    </script>
+  </body>
+</html>

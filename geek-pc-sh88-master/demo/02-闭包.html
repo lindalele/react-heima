@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // var num = 1
+      // function fn() {
+      //   console.log(num)
+      // }
+
+      // 变量：全局变量和局部变量
+
+      // 闭包：当内存函数访问到了外层函数的变量的时候，就产生了闭包
+      // 保护私有变量不被修改
+      // 闭包还能缓存一些数据不被释放
+      function fn() {
+        var money = 100
+        return function addMoney(num) {
+          money = money + num
+          console.log('我的钱', money)
+        }
+      }
+
+      const zs = fn()
+      zs(100)
+      zs(100)
+      zs(100)
+
+      const ls = fn()
+      ls(100)
+
+      zs(100)
+    </script>
+  </body>
+</html>
