@@ -1,5 +1,6 @@
 import React, { Component, createRef } from 'react'
-
+setState本身并不是一个异步的方法，是一个同步的方法。但是react内部性能优化，react会将多次的setState合并成一次，所以setState看起来像是异步的。
+setState不是宏任务队列，也不属于微任务队列，它属于react自己维护的队列。
 export default class App extends Component {
   state = {
     showInput: false,
@@ -40,13 +41,14 @@ export default class App extends Component {
     react在生命周期中或者在事件处理函数中调用setState，react会自动批处理，多次调用setState只会执行一次
     // 如果在async异步环境中，this.setState是同步的表现
     // handleClick = async () => {
+      // await 1;
     //    this.setState({ count: this.state.count + 1 })}
-    react在setTimeout、setInterval、promise、async、原生事件处理函数中调用setState，react不会自动批处理，多次调用setState会执行多次
+    react在setTimeout、setInterval、promise、async、原生事件处理函数中调用setState，react不会自动批处理，多次调用setState会执行多次,setState在原生环境中是 同步的
 
     // setTimeout(()=>{
     //   this.setState({ count: this.state.count + 1 })
     //   // 原生定时器包裹以后，就是同步的，会等它执行完再执行
-    //   console.log(this.state.showInput)
+    //   console.log(this.state.showInput) //0+1=>1
     //   this.inputRef.current.focus()
     // })
 

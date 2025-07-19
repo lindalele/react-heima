@@ -1,5 +1,6 @@
 import React from 'react'
 import './index.scss'
+// props可以解构
 export default function MyFooter({ list, changeAll }) {
   // 获取选中的商品
   const totalCount = list
@@ -15,6 +16,7 @@ export default function MyFooter({ list, changeAll }) {
   return (
     <div className="my-footer">
       <div className="custom-control custom-checkbox">
+        {/* changeAll应该父组件改，MyFooter接收父组件的changeAll */}
         <input
           type="checkbox"
           className="custom-control-input"

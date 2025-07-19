@@ -1,0 +1,6 @@
+vscode插件高亮代码错误：
+Error Lens
+
+ajax请求、手动修改dom、localStorage操作等应该写在副作用useEffect中，函数组件不要写在render函数中，因为render每次都会执行。
+
+并不是所有的副作用都写在useEffect中，比如事件处理函数中，只有点击的时候才会执行，不如里面操作dom。只有每次点击才会执行。可以不用写在useEffect中。

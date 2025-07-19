@@ -3,7 +3,7 @@ import MyFooter from './components/MyFooter'
 import GoodsItem from './components/GoodsItem'
 import './App.scss'
 import { useState, useEffect } from 'react'
-
+// arr放在外面，这样可以避免App每次渲染都执行，重新创建数组
 const arr = [
   {
     id: 1,
@@ -12,7 +12,7 @@ const arr = [
     goods_img: 'https://www.escook.cn/vuebase/pics/1.png',
     goods_price: 108,
     goods_count: 1,
-    goods_state: true
+    goods_state: true,
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const arr = [
     goods_img: 'https://www.escook.cn/vuebase/pics/2.png',
     goods_price: 129,
     goods_count: 1,
-    goods_state: true
+    goods_state: true,
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const arr = [
     goods_img: 'https://www.escook.cn/vuebase/pics/3.png',
     goods_price: 198,
     goods_count: 1,
-    goods_state: false
+    goods_state: false,
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const arr = [
     goods_img: 'https://www.escook.cn/vuebase/pics/4.png',
     goods_price: 99,
     goods_count: 1,
-    goods_state: false
+    goods_state: false,
   },
   {
     id: 5,
@@ -46,7 +46,7 @@ const arr = [
     goods_img: 'https://www.escook.cn/vuebase/pics/5.png',
     goods_price: 156,
     goods_count: 1,
-    goods_state: true
+    goods_state: true,
   },
   {
     id: 6,
@@ -54,7 +54,7 @@ const arr = [
     goods_img: 'https://www.escook.cn/vuebase/pics/6.png',
     goods_price: 142.8,
     goods_count: 1,
-    goods_state: true
+    goods_state: true,
   },
   {
     id: 7,
@@ -63,7 +63,7 @@ const arr = [
     goods_img: 'https://www.escook.cn/vuebase/pics/7.png',
     goods_price: 219,
     goods_count: 2,
-    goods_state: true
+    goods_state: true,
   },
   {
     id: 8,
@@ -71,7 +71,7 @@ const arr = [
     goods_img: 'https://www.escook.cn/vuebase/pics/8.png',
     goods_price: 178,
     goods_count: 1,
-    goods_state: true
+    goods_state: true,
   },
   {
     id: 9,
@@ -80,7 +80,7 @@ const arr = [
     goods_img: 'https://www.escook.cn/vuebase/pics/9.png',
     goods_price: 128,
     goods_count: 1,
-    goods_state: false
+    goods_state: false,
   },
   {
     id: 10,
@@ -89,20 +89,26 @@ const arr = [
     goods_img: 'https://www.escook.cn/vuebase/pics/10.png',
     goods_price: 153,
     goods_count: 1,
-    goods_state: false
-  }
+    goods_state: false,
+  },
 ]
+// 小技巧：写完useSate,回车会自动引入react的useState
 export default function App() {
+  // 一来就能拿到结果初始化，所以写在useState可以，更方便有一点
   const [list, setList] = useState(() => {
+    //     '初始值只调用一次，当组件第一次渲染的时候调用一次，使用setList更新状态的时候不会调用,使用的是上一次变化的数据'
     return JSON.parse(localStorage.getItem('list')) || arr
   })
+  // 上面一行比较特殊，这里useState是只执行一次。 相当于useEffect(() => {},[]) 更好 只执行一次，useEffect是更好的选择。
+  // const [list, setList] = useState([])
+  // useEffect(() => { setList(JSON.parse(localStorage.getItem('list')) || arr) }, [])
   const changeState = (id) => {
     setList(
       list.map((item) => {
         if (item.id === id) {
           return {
             ...item,
-            goods_state: !item.goods_state
+            goods_state: !item.goods_state,
           }
         } else {
           return item
@@ -117,7 +123,7 @@ export default function App() {
       list.map((item) => {
         return {
           ...item,
-          goods_state: value
+          goods_state: value,
         }
       })
     )

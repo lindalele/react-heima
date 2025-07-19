@@ -20,7 +20,7 @@ export default class App extends Component {
     this.setState({ count: this.state.count + 1 })
     console.log(this.state.count) //0 setState是异步的,打印不会立即更新
     console.log(document.querySelector('h1').innerHTML) //0 不会立即更新dom
-
+如果想要立即获取更新后的数据，
     // 更新数据  更新DOM
     this.setState(
       // setState里面还可以传一个回调函数,dom更新还是在所有setState执行完毕之后才会更新,好处是可以获取到上一次的状态

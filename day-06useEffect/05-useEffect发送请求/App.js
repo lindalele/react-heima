@@ -3,13 +3,13 @@ import axios from 'axios'
 export default function App() {
   const [list, setList] = useState([])
   // useEffect(() => { })回调函数必须是一个同步的函数，所以这里不能用async
-  useEffect有一个return，用于清理副作用，如果useEffect导致return出来的不是一个函数，而是promise,就会导致清理不及时
+  // useEffect有一个return，用于清理副作用，如果useEffect导致return出来的不是一个函数，而是promise,就会导致清理不及时
 
   useEffect(() => {
     async function getData() {
       const res = await axios.get('http://geek.itheima.net/v1_0/user/channels')
       setList(res.data.data.channels)
-      // 直接打印list是【】，因为setList(res.data.data.channels)和setState一样是异步的，所以打印出来是空数组，所以需要用打印res
+      // 直接打印list是【】，因为setList(res.data.data.channels)和setState一样是异步的，所以打印出来是空数组，所以可以打印res,但是不能打印list,因为setLIst是异步的，所以打印出来是空数组
     }
     getData()
 
