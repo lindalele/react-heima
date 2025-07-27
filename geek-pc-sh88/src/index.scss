@@ -1,0 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+// 上下结构头部64， 下面auto拉伸撑满
+#root,
+.app {
+  height: 100%;
+}
