@@ -13,7 +13,7 @@ import {
   Image,
   Space,
   Popconfirm,
-  message
+  message,
 } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import { Link, useHistory } from 'react-router-dom'
@@ -21,7 +21,7 @@ import { useDispatch } from 'react-redux'
 import {
   delArticle,
   getArticleList,
-  getChannelList
+  getChannelList,
 } from '@/store/actions/article'
 import { useSelector } from 'react-redux'
 import img from '@/assets/error.png'
@@ -31,7 +31,7 @@ const STATUS = [
   { id: 0, title: '草稿', color: 'red' },
   { id: 1, title: '待审核', color: 'volcano' },
   { id: 2, title: '审核通过', color: 'lime' },
-  { id: 3, title: '审核失败', color: 'gold' }
+  { id: 3, title: '审核失败', color: 'gold' },
 ]
 export default function Article() {
   const dispatch = useDispatch()
@@ -93,11 +93,11 @@ export default function Article() {
             ></Image>
           )
         }
-      }
+      },
     },
     {
       title: '标题',
-      dataIndex: 'title'
+      dataIndex: 'title',
     },
     {
       title: '状态',
@@ -105,23 +105,23 @@ export default function Article() {
       render: (status) => {
         const obj = STATUS.find((item) => item.id === status)
         return <Tag color={obj.color}>{obj.title}</Tag>
-      }
+      },
     },
     {
       title: '发布时间',
-      dataIndex: 'pubdate'
+      dataIndex: 'pubdate',
     },
     {
       title: '阅读数',
-      dataIndex: 'read_count'
+      dataIndex: 'read_count',
     },
     {
       title: '评论数',
-      dataIndex: 'comment_count'
+      dataIndex: 'comment_count',
     },
     {
       title: '点赞数',
-      dataIndex: 'like_count'
+      dataIndex: 'like_count',
     },
     {
       title: '操作',
@@ -140,8 +140,8 @@ export default function Article() {
             </Popconfirm>
           </Space>
         )
-      }
-    }
+      },
+    },
   ]
 
   return (
@@ -190,6 +190,7 @@ export default function Article() {
         title={`根据筛选条件共查询到${articles.total_count}条结果:`}
         style={{ marginTop: 10 }}
       >
+        {/* 如果数据中有key,Table组件会自动那key作为这一行唯一键；如果数据中没有key,那么 需要在Table中加“rowKey”属性。 rowKey=“字符串会自动从数据源中拿到数据中的id作为唯一值，rowKey也可以写成={函数} */}
         <Table
           rowKey={(record) => record.id}
           dataSource={articles.results}
@@ -209,7 +210,7 @@ export default function Article() {
                 params.current.page = page
               }
               dispatch(getArticleList(params.current))
-            }
+            },
           }}
         />
       </Card>

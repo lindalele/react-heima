@@ -1,3 +1,4 @@
+/* NavLink默认会加上acyive类名，如果想要修改样式，需要使用activeClassName */
 .active {
   color: red;
 }

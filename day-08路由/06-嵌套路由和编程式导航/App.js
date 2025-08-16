@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   NavLink,
   Switch,
-  Route
+  Route,
 } from 'react-router-dom'
 import My from './pages/My'
 import Friend from './pages/Friend'
@@ -14,6 +14,7 @@ export default function App() {
       <div>
         <ul>
           <li>
+            {/* NavLink有高亮效果 */}
             <NavLink to="/find">发现音乐</NavLink>
           </li>
           <li>

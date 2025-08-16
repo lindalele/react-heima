@@ -4,7 +4,7 @@ import {
   Link,
   Route,
   NavLink,
-  Switch
+  Switch,
 } from 'react-router-dom'
 import Home from './pages/Home'
 import Comment from './pages/Comment'
@@ -22,8 +22,11 @@ export default function App() {
               首页
             </NavLink>
           </li>
+          {/* activeClassName给高亮取个类名，默认类名active */}
           <li>
-            <NavLink to="/comment">评论</NavLink>
+            <NavLink to="/comment" activeClassName="aa">
+              评论
+            </NavLink>
           </li>
           <li>
             <NavLink to="/search">搜索</NavLink>
@@ -38,6 +41,7 @@ export default function App() {
           <Route path="/" exact component={Home}></Route>
           <Route path="/comment" component={Comment}></Route>
           <Route path="/search" component={Search}></Route>
+          {/* 兜底的方最下面 */}
           <Route component={NotFound}></Route>
         </Switch>
       </div>

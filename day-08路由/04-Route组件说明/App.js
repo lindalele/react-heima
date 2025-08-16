@@ -10,7 +10,7 @@ export default function App() {
       <div>
         <ul>
           <li>
-            {/* exact代表精确匹配 */}
+            {/* exact代表精确匹配，如果不加点什么都会红色，因为任何一个都是以‘/’开头的 */}
             <NavLink exact to="/">
               首页
             </NavLink>
