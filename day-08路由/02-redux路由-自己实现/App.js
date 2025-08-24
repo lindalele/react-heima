@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Home from './pages/Home'
 import Search from './pages/Search'
 import Comment from './pages/Comment'
+
 export default function App() {
   const [current, setCurrent] = useState('')
 

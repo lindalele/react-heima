@@ -17,14 +17,19 @@ import PrivateRoute from '@/components/PrivateRoute'
 const Login = React.lazy(() => import('./pages/Login'))
 const Layout = React.lazy(() => import('./pages/Layout'))
 const NotFound = React.lazy(() => import('./pages/NotFound'))
+// npm 有react-router-dom，找到github，右边有文档的链接
+
 //https://v5.reactrouter.com/web/examples/官方提供例子
 // react中，没有路由导航守卫，也就是token删除，再次访问home页面的时候，会提示token失效，是因为接口中自己写了401跳转回登录页面，需要重新登录，所以需要自己写一个路由守卫。
 // 渲染组件通过component来渲染，直接把组件方法放到<Route path="/will-match"><WillMatch /></Route>
 
 // Route API在https://v5.reactrouter.com/web下的API中可以查看，Route除了component属性，还有render属性，也可以有children
 
-1.路由配置，如果没有登录就去登录。2.登录页面处理，如果有from就去from，没有就重定向到首页
-3.request处理401去登录，带上参数
+// 1.路由配置，如果没有登录就去登录。2.登录页面处理，如果有from就去from，没有就重定向到首页
+// 3.request处理401去登录，带上参数
+
+// npx create-react-app geek-pc-88
+
 export default function App() {
   return (
     <Router history={history}>

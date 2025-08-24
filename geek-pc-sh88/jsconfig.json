@@ -1,4 +1,7 @@
 {
+  // 在使用jsconfig.json会报个找不到错误，不用处理。
+  // 如果要去除，可以再vscode左下方的工具按钮，找到设置，搜索jsconfig，然后勾选
+  // jsconfig.json文件是是给路径增加提示的让vscode知道@就是src目录，方便写路径的时候，可以给出提示
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {

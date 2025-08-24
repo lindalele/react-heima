@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   NavLink,
   Switch,
-  Route
+  Route,
 } from 'react-router-dom'
 import Article from './Article'
 
@@ -25,6 +25,7 @@ export default function App() {
 
         <hr />
         <Switch>
+          {/* 动态参数 */}
           <Route path="/article/:id" component={Article}></Route>
         </Switch>
       </div>

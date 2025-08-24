@@ -1,9 +1,24 @@
 const path = require('path')
 // HtmlWebpackPlugin
 const { whenProd, getPlugin, pluginByName } = require('@craco/craco')
+react create想要修改webpack的配置，需要使用craco
+
+1.推荐：通过yarn add @craco/craco，可以新增加一个配置文件，覆盖原本的react-scripts中的配置，craco.config.js。
+如果是vue想要覆盖，则直接创建vue.config.js。vue直接就会读取这个文件，react需要通过安装craco来读取这个craco.config.js文件。
+1.yarn add @craco/craco
+2.在package.json中，将"start":"react-scripts start"替换为"craco start"
+3.在package.json中，将"build":"react-scripts build"替换为"craco build"
+4.在package.json中，将"test":"react-scripts test"替换为"craco test"
+然后
+
+2.yarn add eject的方式释放原本在node_modules中的react-scripts中的webpack配置，到项目中，注意，该操作是不可逆的，
+
 module.exports = {
+
   webpack: {
+    // 配置别名
     alias: {
+      // 绝对路径
       '@': path.join(__dirname, 'src')
     },
     configure: (webpackConfig) => {

@@ -16,6 +16,8 @@ export default function App() {
       <div>
         <ul>
           <li>
+            {/* Link是直接跳转，如果需要拦截，则需要编程式路由 */}
+            {/* Link可以提供高亮的效果，a连接没有 */}
             <Link to="/home">首页</Link>
           </li>
           <li>
@@ -26,6 +28,7 @@ export default function App() {
           </li>
         </ul>
         <hr />
+        Route是路由规则 等价于{current === '/home' && <Home></Home>}
         <Route path="/home" component={Home}></Route>
         <Route path="/comment" component={Comment}></Route>
         <Route path="/search" component={Search}></Route>

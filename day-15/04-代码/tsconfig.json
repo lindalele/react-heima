@@ -1,0 +1,24 @@
+{
+  // 只要是typescript，一般都会有typescript的配置文件  tsconfig.json
+  "compilerOptions": {
+    // es编译成js的版本
+    "target": "es5",
+    // typescript内置的库
+    "lib": ["dom", "dom.iterable", "esnext"],
+    // typescpirt环境是否允许编译js文件
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src"]
+}

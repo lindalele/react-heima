@@ -4,6 +4,7 @@
   position: absolute;
   left: 0;
   top: 0;
+  //webpack规则就是这样， 样式中需要用~开头+@，vue中也是这样的规则
   background: center/cover url(~@/assets/login.png);
   :global {
     .login-logo {
