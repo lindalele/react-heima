@@ -1,0 +1,6 @@
+export const DEL_TODO = 'DEL_TODO'
+export const CHANGE_DONE = 'CHANGE_DONE'
+export const ADD_TODO = 'ADD_TODO'
+export const CHANGE_ALL_DONE = 'CHANGE_ALL_DONE'
+export const CHANGE_NAME = 'CHANGE_NAME'
+export const CLEAR_TODO = 'CLEAR_TODO'
