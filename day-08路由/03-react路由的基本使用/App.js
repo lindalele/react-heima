@@ -28,7 +28,8 @@ export default function App() {
           </li>
         </ul>
         <hr />
-        Route是路由规则 等价于{current === '/home' && <Home></Home>}
+        {/* Route是路由规则 等价于{current === '/home' && <Home></Home>} */}
+        内部已经做好了
         <Route path="/home" component={Home}></Route>
         <Route path="/comment" component={Comment}></Route>
         <Route path="/search" component={Search}></Route>

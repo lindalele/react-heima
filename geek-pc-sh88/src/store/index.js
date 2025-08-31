@@ -1,3 +1,4 @@
+// yarn add redux react-redux redux-thunk redux-devtools-extension
 import { applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
@@ -18,8 +19,8 @@ const store = createStore(
   reducer,
   {
     login: {
-      token: getToken()
-    }
+      token: getToken(),
+    },
   },
   middlewares
 )
