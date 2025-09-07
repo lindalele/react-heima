@@ -4,7 +4,7 @@ import {
   CHANGE_DONE,
   CHANGE_NAME,
   CLEAR_TODO,
-  DEL_TODO
+  DEL_TODO,
 } from '../constants/todos'
 
 /**
@@ -12,11 +12,22 @@ import {
  * @param {*} id
  * @returns
  */
-export const delTodo = (id) => ({
-  type: DEL_TODO,
-  id
-})
-
+// export const delTodo = (id) => ({
+//   type: DEL_TODO,
+//   id,
+// })
+// 异步的action
+// 先安装react-thunk
+export const delTodo = (id) => {
+  return (dispatch) => {
+    setTimeout(() => {
+      dispatch({
+        type: DEL_TODO,
+        id,
+      })
+    }, 2000)
+  }
+}
 /**
  * 修改任务的状态
  * @param {*} id
@@ -24,7 +35,7 @@ export const delTodo = (id) => ({
  */
 export const changeDone = (id) => ({
   type: CHANGE_DONE,
-  id
+  id,
 })
 
 /**
@@ -35,7 +46,7 @@ export const changeDone = (id) => ({
 export const addTodo = (name) => ({
   type: ADD_TODO,
   name,
-  id: Date.now()
+  id: Date.now(),
 })
 
 /**
@@ -45,7 +56,7 @@ export const addTodo = (name) => ({
  */
 export const changeAllDone = (done) => ({
   type: CHANGE_ALL_DONE,
-  done
+  done,
 })
 
 /**
@@ -57,9 +68,21 @@ export const changeAllDone = (done) => ({
 export const changeName = (id, name) => ({
   type: CHANGE_NAME,
   id,
-  name
+  name,
 })
-
-export const clearTodo = () => ({
-  type: CLEAR_TODO
-})
+// 同步action的写法
+// export const clearTodo = () => ({
+//   type: CLEAR_TODO
+// })
+// 异步action的写法
+export const clearTodo = () => {
+  return (dispatch) => {
+    // 处理异步代码
+    setTimeout(() => {
+      // 这里才是store.dispatch真正的被reducer处理
+      dispatch({
+        type: CLEAR_TODO,
+      })
+    }, 1000)
+  }
+}

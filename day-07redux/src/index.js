@@ -5,7 +5,7 @@ import App from './App'
 import store from './store'
 import { Provider } from 'react-redux'
 
-// yarn add redux-logger
+// yarn add redux-logger用于打印日志
 ReactDOM.render(
   <Provider store={store}>
     <App></App>

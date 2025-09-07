@@ -13,6 +13,8 @@ class App extends Component {
         <h3>这是App组件</h3>
         <div>
           点击次数：{this.state.count}
+          react注册事件的语法：
+          {/*  on事件名称={函数，函数会找不到，所以用this.代表类组件中的一个方法} on事件名称={this.方法名} */}
           <a
             href="http://www.baidu.com"
             onClick={this.handleClick}
@@ -30,6 +32,7 @@ class App extends Component {
       </div>
     )
   }
+  // 事件是一个函数，和dom元素很像，可以接受到一个e
 
   handleClick(e) {
     // 阻止浏览器默认行为

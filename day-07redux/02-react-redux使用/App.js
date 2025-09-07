@@ -9,6 +9,7 @@ export default function App() {
   // const [count, setCount] = useState(0)
   // 通过redux实现金钱管理
   // 通过自己导入的store ,调用store.getState() 就可以获取到store的状态。但是用了react-redux之后，store.getState()就不需要了，因为react-redux,store统一提供了
+
   // useSelector((state)里面的参数就是store里面的state，注意这样写以后，这个值就不用监听，他自己就会更新***
   const money = useSelector((state) => {
     // 由于reducer是合并的，所以我们用的是money的模块，所以这里需要写state.money

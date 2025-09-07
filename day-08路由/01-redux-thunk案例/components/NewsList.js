@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux'
 import avatar from '../assets/back.jpg'
 import { getNewsList } from '../store/actions/news'
 export default function NewsList() {
+  // 思路：拿到id,依赖active的变化去发请求
   const active = useSelector((state) => state.channel.active)
+
   const list = useSelector((state) => state.news)
   const dispatch = useDispatch()
   useEffect(() => {

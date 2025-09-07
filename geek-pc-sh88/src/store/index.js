@@ -15,6 +15,7 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   middlewares = applyMiddleware(thunk)
 }
+
 const store = createStore(
   reducer,
   {

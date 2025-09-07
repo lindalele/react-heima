@@ -1,18 +1,20 @@
 import axios from 'axios'
 import { CHANGE_ACTIVE, SET_CHANNEL } from '../constants'
+// 获取数据列表，在action中调用接口，在reducer中处理数据,在组件中调用action
 export const getChannelList = () => {
   return async (dispatch) => {
     const res = await axios.get('http://toutiao.itheima.net/v1_0/channels')
     dispatch({
       type: SET_CHANNEL,
-      payload: res.data.data.channels
+      // 额外参数payload
+      payload: res.data.data.channels,
     })
   }
 }
-
+// 修改高亮，是同步的，直接修改
 export const changeActive = (id) => {
   return {
     type: CHANGE_ACTIVE,
-    id
+    id,
   }
 }

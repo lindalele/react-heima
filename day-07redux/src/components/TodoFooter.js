@@ -28,6 +28,7 @@ export default function TodoFooter() {
           </li>
         ))}
       </ul>
+      {/* 这里是中间件的dispatch， */}
       <button className="clear-completed" onClick={() => dispatch(clearTodo())}>
         Clear completed
       </button>
