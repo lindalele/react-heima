@@ -146,6 +146,8 @@ export default function Article() {
 
   return (
     <div className={styles.root}>
+      {/* 地址：ant.design/components/breakcrumb-cn
+       */}
       <Card
         title={
           <Breadcrumb>
@@ -169,6 +171,9 @@ export default function Article() {
           </Form.Item>
           <Form.Item label="频道" name="channel_id">
             <Select style={{ width: 200 }} allowClear placeholder="请选择频道">
+              {/* 有两种写法，可以根据文档导入import {Select} from 'antd',后const {Option}=Select。 */}
+              {/* 也可以直接写<Select.Option></Select.Option> */}
+
               {channels.map((item) => (
                 <Select.Option value={item.id} key={item.id}>
                   {item.name}
@@ -179,6 +184,7 @@ export default function Article() {
           <Form.Item label="日期" name="date">
             <DatePicker.RangePicker></DatePicker.RangePicker>
           </Form.Item>
+
           <Form.Item>
             <Button type="primary" htmlType="submit">
               筛选
