@@ -33,24 +33,39 @@ const STATUS = [
   { id: 2, title: '审核通过', color: 'lime' },
   { id: 3, title: '审核失败', color: 'gold' },
 ]
+/**
+ * 文章管理组件
+ * 用于展示和管理文章列表，包括筛选、删除、分页等功能
+ */
 export default function Article() {
+  // 使用Redux的useDispatch和useSelector钩子获取状态和分发器
   const dispatch = useDispatch()
+  // 获取文章频道列表
   const channels = useSelector((state) => state.article.channels)
+  // 获取文章列表数据
   const articles = useSelector((state) => state.article.articles)
+  // 使用React Router的useHistory钩子进行页面导航
   const history = useHistory()
+  // 使用useRef存储筛选参数，以便在整个组件中共享和更新
+  // 为了本页面中其他地方都能访问得到，使用ref
   const params = useRef({})
+  // 组件挂载时获取频道列表和文章列表
   useEffect(() => {
     dispatch(getChannelList())
     dispatch(getArticleList())
   }, [dispatch])
 
+  // 处理表单筛选的回调函数
+  // 由于筛选条件变化，不需要刷新页面，所以此时可以用useRef
   const onFinish = (values) => {
+    // 处理状态筛选条件
     if (values.status !== -1) {
       params.current.status = values.status
     } else {
       delete params.current.status
     }
 
+    // 处理频道筛选条件
     params.current.channel_id = values.channel_id
     if (values.date) {
       params.current.begin_pubdate = values.date[0]
@@ -63,15 +78,16 @@ export default function Article() {
       delete params.current.begin_pubdate
       delete params.current.end_pubdate
     }
-    // 从第一页开始筛选
+    // 点击筛选，回到第一页。从第一页开始筛选
     params.current.page = 1
     dispatch(getArticleList(params.current))
     // console.log(params.current)
   }
 
+  // 删除比较特殊
   const del = async (id) => {
     await dispatch(delArticle(id))
-    // 重新发送请求
+    // 重新发送请求，删除完成后还是在那一页。由于使用的是ref,所以筛选条件不会丢失，还是在的。删除之后刷新是基于现有筛选条件去请求的数据
     await dispatch(getArticleList(params.current))
     message.success('删除成功')
   }

@@ -10,7 +10,7 @@ import {
   Radio,
   Upload,
   message,
-  Modal
+  Modal,
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { Link, useHistory, useParams } from 'react-router-dom'
@@ -21,14 +21,15 @@ import { useDispatch } from 'react-redux'
 import {
   addArticle,
   editArticle,
-  getArticleInfo
+  getArticleInfo,
 } from '@/store/actions/article'
+//1. import { useChannels } from '@/hooks'
 
 export default function Publish() {
   const formRef = useRef(null)
   const history = useHistory()
   const dispatch = useDispatch()
-
+  // 2.const channels = useChannels();
   const { id } = useParams()
 
   // 获取文章详情
@@ -39,12 +40,12 @@ export default function Publish() {
       console.log(res)
       formRef.current.setFieldsValue({
         ...res,
-        type: res.cover.type
+        type: res.cover.type,
       })
       setType(res.cover.type)
       const list = res.cover.images.map((item) => {
         return {
-          url: item
+          url: item,
         }
       })
       setFileList(list)
@@ -64,15 +65,15 @@ export default function Publish() {
       ...values,
       cover: {
         type: type,
-        images: images
-      }
+        images: images,
+      },
     }
     if (id) {
       // 修改
       await dispatch(
         editArticle(draft, {
           ...data,
-          id
+          id,
         })
       )
     } else {
@@ -125,6 +126,7 @@ export default function Publish() {
           </Breadcrumb>
         }
       >
+        {/* wrapperCol是内容的宽度 */}
         <Form
           ref={formRef}
           labelCol={{ span: 4 }}
@@ -140,8 +142,8 @@ export default function Publish() {
             rules={[
               {
                 required: true,
-                message: '标题不能为空'
-              }
+                message: '标题不能为空',
+              },
             ]}
           >
             <Input
@@ -155,10 +157,24 @@ export default function Publish() {
             rules={[
               {
                 required: true,
-                message: '频道不能为空'
-              }
+                message: '频道不能为空',
+              },
             ]}
           >
+            {/*3.封装技巧：如果是数据是公共的，下拉框或者表格都是用这数据，那么可以使用自定义hooks这个是可以封装一段逻辑，里面请求数据，return数据，这个函数组件可以引入，在dom中使用 */}
+            {/*     <Select
+              style={{ width: 200 }}
+              allowClear
+              placeholder="请选择频道"
+              {...props}
+            >
+              {channels.map((item) => (
+                <Select.Option value={item.id} key={item.id}>
+                  {item.name}
+                </Select.Option>
+              ))}
+            </Select> */}
+            {/* 如果是dom都是一样的，可以封装成一个组件 */}
             <Channel></Channel>
           </Form.Item>
           <Form.Item
@@ -172,8 +188,8 @@ export default function Publish() {
                   } else {
                     return Promise.resolve()
                   }
-                }
-              }
+                },
+              },
             ]}
           >
             <Radio.Group value={type} onChange={onTypeChange}>
@@ -208,12 +224,13 @@ export default function Publish() {
             rules={[
               {
                 required: true,
-                message: '内容不能为空'
-              }
+                message: '内容不能为空',
+              },
             ]}
           >
             <ReactQuill></ReactQuill>
           </Form.Item>
+          {/* wrapperCol内容占比 */}
           <Form.Item wrapperCol={{ offset: 4, span: 20 }}>
             <Space>
               <Button type="primary" htmlType="submit">

@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+// :root代表根元素，代表html，定义在:root中的样式，在全局范围内生效,整个项目中都可以使用
+// :root {
+//   --theme-color: #fc6627;
+// }
+// .box {
+//   width: 100px;
+//   height: 100px; //一般用vw来设置宽高，因为vw是相对于视口宽度的单位，可以随着视口宽度的变化而变化
+//   // 使用变量，用var()函数
+//   background-color: var(--theme-color);
+// }
+// 覆盖antd-mobile的主题色
+// antd-mobile全局样式也是使用了:root，所以需要使用:root:root来覆盖 。写两个:root是为了提升优先级，让css权重更高。
+// antd-mobile由于是在组件中按需引入的，所以写在index.scss中，是先引入的，antd-mobile的样式在后面执行，会覆盖index.scss中的样式，所以index.scss需要使用:root:root来提升优先级，顺利覆盖antd-mobile的样式
+// 用了两个:root是为了提升优先级
+:root:root {
+  --adm-color-primary: #fc6627;
+  --adm-color-success: #00b578;
+  --adm-color-warning: #ff8f1f;
+  --adm-color-danger: #ff3141;
+  --adm-color-white: #ffffff;
+  --adm-color-weak: #999999;
+  --adm-color-light: #cccccc;
+  --adm-border-color: #eeeeee;
+  --adm-font-size-main: 13px;
+  --adm-color-text: #333333;
+}
+
+// 字体图标 字体图标通用样式
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+// .adm-button:not(.adm-button-default).adm-button-fill-none {
+//   --text-color: #1677ff !important;
+// }

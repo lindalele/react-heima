@@ -5,7 +5,7 @@ export const getChannelList = () => {
     const res = await request.get('/channels')
     dispatch({
       type: GET_CHANNEL_LIST,
-      payload: res.data.data.channels
+      payload: res.data.data.channels,
     })
   }
 }
@@ -14,20 +14,22 @@ export const getArticleList = (params) => {
   return async (dispatch) => {
     const res = await request({
       url: '/mp/articles',
-      params
+      params,
     })
     dispatch({
       type: GET_ARTICLE_LIST,
-      payload: res.data.data
+      payload: res.data.data,
     })
   }
 }
 
 export const delArticle = (id) => {
+  // 删完是不需要删除redux的数据的，只需要重新渲染页面即可。
+  // 注意删除只需要请求接口就可以，不需要dispatch,不需要10条数据变9条，不需要，需要的是重新渲染。
   return async () => {
     await request({
       method: 'delete',
-      url: `/mp/articles/${id}`
+      url: `/mp/articles/${id}`,
     })
   }
 }
@@ -39,8 +41,8 @@ export const addArticle = (draft = false, data) => {
       method: 'post',
       data,
       params: {
-        draft
-      }
+        draft,
+      },
     })
   }
 }
@@ -52,8 +54,8 @@ export const editArticle = (draft = false, data) => {
       method: 'put',
       data,
       params: {
-        draft
-      }
+        draft,
+      },
     })
   }
 }
