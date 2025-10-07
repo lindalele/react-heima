@@ -27,8 +27,28 @@ instance.interceptors.request.use(
     }
     return config
   },
-  function (error) {
+  function (error: AxiosError<{ message: string }>) {
     // 对请求错误做些什么
+    if (!error.response) {
+      Toast.show({
+        content: '网络异常，请稍后再试',
+      })
+      return Promise.reject(error)
+    }
+    Toast.show(error.response.data.message)
+    return Promise.reject(error)
+  }
+)
+
+// 添加响应拦截器
+instance.interceptors.response.use(
+  function (response) {
+    // 对响应数据做点什么
+    return response
+  },
+  async function (error: AxiosError<{ message: string }>) {
+    if (!error.response) {
+    }
     return Promise.reject(error)
   }
 )

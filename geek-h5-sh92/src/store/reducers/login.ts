@@ -6,6 +6,7 @@ import { getToken } from '@/utils/storage'
 const initialState: Token = getToken()
 
 const login = (state = initialState, action: LoginAction): Token => {
+  // 把数据存起来，并且返回
   if (action.type === 'login/login') {
     return action.payload
   }

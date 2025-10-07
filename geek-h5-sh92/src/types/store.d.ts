@@ -1,12 +1,13 @@
 import store from '@/store'
 import { ThunkAction } from 'redux-thunk'
 import { Channel, Token, User, UserProfile } from './data'
+// store的state的类型
 export type RootState = ReturnType<typeof store.getState>
 
 // 项目中ThunkAction
 export type RootThunkAction = ThunkAction<void, RootState, unknown, RootAction>
 
-// 项目中所有的Action类型
+// 项目中所有各个模块的Action类型
 export type RootAction =
   | LoginAction
   | ProfileAction
@@ -16,7 +17,7 @@ export type RootAction =
 // 登录模块的Action类型
 export type LoginAction =
   | {
-      type: 'login/login'
+      type: 'login/login' //login模块的login
       payload: Token
     }
   | {

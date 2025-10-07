@@ -4,7 +4,7 @@ export type LoginForm = {
   code: string
 }
 
-// 定义一个通用的返回类型
+// 定义一个通用的返回类型 所有接口返回的数据类型都是message和data,只有data的类型不同，data的类型可以传递进来
 export type ApiResponse<T> = {
   message: string
   data: T

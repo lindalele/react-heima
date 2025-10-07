@@ -3,6 +3,8 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
 
+// 1.yarn add redux react-redux redux-devtools-extension redux-thunk@2.3.0
+
 // production development
 console.log(process.env.NODE_ENV)
 // redux的开发者工具，只有开发阶段应该开启
