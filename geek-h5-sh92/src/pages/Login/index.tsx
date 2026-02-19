@@ -44,12 +44,16 @@ export default function Login() {
   // 写法2 使用ref
   const timeRef = useRef(0)
   const timeIdRef = useRef(0)
-  const [count, setCount] = useState(0)
-  const [countDown] = useCountDown({
-    targetDate: count,
-  })
+  // const [count, setCount] = useState(0)
+  // const [countDown] = useCountDown({
+  //   targetDate: count,
+  // })
   const onGetCode = async () => {
-    if (countDown > 0) {
+    // if (countDown > 0) {
+    //   // countDown大于0，说明倒计时正在运行，
+    //   return
+    // }
+    if (time > 0) {
       // countDown大于0，说明倒计时正在运行，
       return
     }
@@ -83,7 +87,7 @@ export default function Login() {
     //   setTime(timeRef.current - 1)
     // }, 1000)
 
-    setCount(Date.now() + 60 * 1000)
+    // setCount(Date.now() + 60 * 1000)
   }
   useEffect(() => {
     if (time === 0) {

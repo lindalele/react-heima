@@ -33,6 +33,9 @@ export default function Layout() {
         </KeepAlive>
         {/* 内容 */}
         <Switch>
+          {/* <Route path="/home" exact>
+            <Home></Home>
+          </Route> */}
           <Route path="/home/video">
             <Video></Video>
           </Route>
@@ -44,12 +47,19 @@ export default function Layout() {
           </PrivateRoute>
         </Switch>
         {/* 底部导航栏 */}
+        {/* activeKey高亮的key，从地址栏获取 */}
         <TabBar
           className="tab-bar"
           onChange={changeRoute}
           activeKey={location.pathname}
         >
           {tabs.map((item) => (
+            // icon支持写dom,icon={<Icon type={item.icon}></Icon>}
+            //支持函数写法
+            //  icon={(active:boolean)=> (
+            //   <Icon type={active? `${item.icon}_sel` : item.icon}></Icon>
+            // )
+            // }
             <TabBar.Item
               key={item.path}
               icon={(active: any) => {

@@ -11,6 +11,25 @@ type HomeStateType = {
   }
 }
 
+type HomeType = {
+  userChannels: Channel[]
+  allChannels: Channel[]
+  active: number
+  channelArticles: {
+    [key: number]: {
+      timestamp: number
+      article: Article[]
+    }
+  }
+}
+
+const initValue: HomeType = {
+  userChannels: [],
+  allChannels: [],
+  active: 0,
+  channelArticles: [],
+}
+
 const homeState: HomeStateType = {
   articles: {},
 }
@@ -36,7 +55,41 @@ const home = produce((draft, action: HomeAction) => {
       }
       break
     }
+    case 'home/saveChannelArticles': {
+      // 12:00
+      const { channel_id, timestamp, articles } = action.payload
 
+      const old = state.channelArticles[channel_id]?.articles || []
+      return {
+        ...state,
+        channelArticles: {
+          ...state.channelArticles,
+          [channel_id]: {
+            timestamp: +timestamp,
+            articles: [...old, ...articles],
+          },
+        },
+      }
+
+      break
+    }
+    case 'home/saveNewChannelArticles': {
+      const { channel_id, timestamp, articles } = action.payload
+
+      const old = state.channelArticles[channel_id]?.articles || []
+      return {
+        ...state,
+        channelArticles: {
+          ...state.channelArticles,
+          [channel_id]: {
+            timestamp: +timestamp,
+            articles: [...articles, ...old],
+          },
+        },
+      }
+
+      break
+    }
     default:
       break
   }

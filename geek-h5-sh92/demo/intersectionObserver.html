@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title  >
+</head>
+<body>
+对于浏览器来说，img有src属性就会加载，但是如果是自定义属性，那么浏览器不认识这个属性，就不会加载图片。
+ 图片的加载是耗时的，如果图片很多，页面加载就会很慢，所以我们可以使用IntersectionObserver来监听图片是否进入可视区域，如果进入可视区域，再加载图片，这样可以提高页面的加载速度。
+    <div style="height: 2000px;">
+<img src="" alt="https://logo192.png" srcset="">
+    </div>
+    <script>
+        const img = document.querySelector('img')
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        }
+        // MDN中查找IntersectionObserver new IntersectionObserver(callback, option)
+        // entries代表的是观察的元素的数组，数组是因为observer可以被调用多次，也可以观察多个元素
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((item) => {
+                // isIntersecting默认是false，当元素进入可视区域时，isIntersecting为true
+                if (item.isIntersecting) {
+                    // 拿到data-src属性，赋值给src属性
+                    // img.dataset能够拿到以data开头的自定义属性
+                    img.src = img.getAttribute('data-src')
+                    //拿到了图片以后，就不需要多次加载了。所以用unobserver,就不再观察了
+                    observer.unobserve(img)
+                }
+            })
+        }, options)
+        // 有一个观察对象，参数是被观察的dom
+        observer.observe(img)
+    </script>
+    </script>
+</body>
+</html>

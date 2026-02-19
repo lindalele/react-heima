@@ -19,7 +19,7 @@ const Img = ({ src, className, alt }: Props) => {
     setLoading(false)
   }
   const onError = () => {
-    // 图片加载失败，修改error状态
+    // 图片加载失败，修改error状态,让错误图片显示出来
     setError(true)
   }
   useEffect(() => {
@@ -31,6 +31,7 @@ const Img = ({ src, className, alt }: Props) => {
         observer.unobserve(imgDom)
       }
     })
+    // 监听图片进入视口
     observer.observe(imgRef.current!)
   }, [])
   return (
@@ -41,7 +42,6 @@ const Img = ({ src, className, alt }: Props) => {
           <Icon type="iconphoto" />
         </div>
       )}
-
       {/* 加载出错时显示的内容 */}
       {error && (
         <div className="image-icon">
@@ -49,7 +49,8 @@ const Img = ({ src, className, alt }: Props) => {
         </div>
       )}
 
-      {/* 加载成功时显示的内容 */}
+      {/* 加载成功时显示的内容，img有常见的两个事件：1.图片的加载事件onLoad 2.图片的onError */}
+      {/* 注意这里不能写上!loading ,img需要有，否则ref和事件加不上 */}
       {!error && (
         <img
           alt={alt}

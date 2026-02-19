@@ -5,13 +5,21 @@ import { useHistory } from 'react-router-dom'
 import styles from './index.module.scss'
 import { Article } from '@/types/data'
 import dayjs from 'dayjs'
-import Img from '@/components/Img'
+// 希望是全局使用，不要在组件中引入，组件可能还没加载，
+// import relativeTime from 'dayjs/plugin/relativeTime'
 
+// import 'dayjs/locale/zh-cn'
+// dayjs.locale('zh-cn')
+// dayjs.extend(relativeTime) //显示几天前等
+
+import Img from '@/components/Img'
+// 接收父组件的数据
 type Props = {
   article: Article
 }
 
 const ArticleItem = ({ article }: Props) => {
+  const token = useSelector((state: RootState) => state.login.token)
   const {
     cover: { type, images },
     title,
@@ -37,7 +45,7 @@ const ArticleItem = ({ article }: Props) => {
           <div className="article-imgs">
             {images.map((item, index) => (
               <div className="article-img-wrapper" key={index}>
-                {/* 图片懒加载 */}
+                {/* 图片懒加载组件 */}
                 <Img src={item} alt="" />
               </div>
             ))}
@@ -49,7 +57,8 @@ const ArticleItem = ({ article }: Props) => {
         <span>{comm_count} 评论</span>
         <span>{dayjs(pubdate).fromNow()}</span>
         <span className="close">
-          <Icon type="iconbtn_essay_close" />
+          {/* 判断是否登录，登录就有❌️ */}
+          {token && <Icon type="iconbtn_essay_close" />}
         </span>
       </div>
     </div>

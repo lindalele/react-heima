@@ -14,7 +14,8 @@ export default function Login(props) {
   const location = useLocation()
 
   const [loading, setLoading] = useState(false)
-
+  // 表单校验通过，就会执行onFinished,并且会携带数据
+  // ant-d的表单中不需要写受控值value onchange也不需要非受控,因为antd已经帮我们处理好了
   const onFinish = async (values) => {
     // 设置加载状态为true
     setLoading(true)
@@ -46,6 +47,7 @@ export default function Login(props) {
         {/* 表单 */}
         {/* validateTrigger可以给整个Form或者 单个Form.Item设置
          */}
+        wrapperCol={{ span: 16 }} 16表示内容占据16
         <Form
           //  autoComplete="off"不会有提示
           autoComplete="off"
@@ -53,7 +55,7 @@ export default function Login(props) {
           validateTrigger={['onChange', 'onBlur']}
           // onFinish点击登录按钮校验通过会走onFinish，并且会携带数据
           onFinish={onFinish}
-          // initialValues提供初始值
+          // initialValues 给form提供初始值
           initialValues={{
             mobile: '13911111111',
             code: '246810',

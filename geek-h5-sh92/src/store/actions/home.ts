@@ -18,10 +18,11 @@ export const getArticleList = (
         timestamp,
       },
     })
+
     dispatch({
-      type: 'home/getArticleList',
+      type: 'home/saveChannelArticles',
       payload: {
-        timestamp: +res.data.data.pre_timestamp,
+        timestamp: res.data.data.pre_timestamp,
         channel_id,
         results: res.data.data.results,
       },
@@ -46,7 +47,7 @@ export const getNewsArticleList = (
       },
     })
     dispatch({
-      type: 'home/getNewArticleList',
+      type: 'home/saveNewArticleList',
       payload: {
         timestamp: +res.data.data.pre_timestamp,
         channel_id,

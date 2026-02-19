@@ -50,6 +50,34 @@ export type ChannelAction =
     }
 export type HomeAction =
   | {
+      type: 'home/saveUserChannels'
+      payload: Channel[]
+    }
+  | {
+      type: 'home/saveAllChannels'
+      payload: Channel[]
+    }
+  | {
+      type: 'home/changeActive'
+      payload: number
+    }
+  | {
+      type: 'home/saveChannelArticles'
+      payload: {
+        timestamp: string
+        articles: Articles[]
+        channel_id: number
+      }
+    }
+  | {
+      type: 'home/saveNewArticleList'
+      payload: {
+        timestamp: number
+        channel_id: number
+        results: Article[]
+      }
+    }
+  | {
       type: 'home/getArticleList'
       payload: {
         timestamp: number

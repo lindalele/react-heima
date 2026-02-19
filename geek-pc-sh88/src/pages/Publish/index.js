@@ -15,6 +15,7 @@ import {
 import { PlusOutlined } from '@ant-design/icons'
 import { Link, useHistory, useParams } from 'react-router-dom'
 import Channel from '@/components/Channel'
+// 第二步
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useDispatch } from 'react-redux'
@@ -24,7 +25,8 @@ import {
   getArticleInfo,
 } from '@/store/actions/article'
 //1. import { useChannels } from '@/hooks'
-
+// react-quill的使用，打开gthub,按照文档使用
+// 第一步yarn add react-quil
 export default function Publish() {
   const formRef = useRef(null)
   const history = useHistory()
@@ -127,6 +129,7 @@ export default function Publish() {
         }
       >
         {/* wrapperCol是内容的宽度 */}
+        {/* validateTrigger可以给form,也可以单个给form.item */}
         <Form
           ref={formRef}
           labelCol={{ span: 4 }}
@@ -139,6 +142,7 @@ export default function Publish() {
           <Form.Item
             label="标题"
             name="title"
+            // validateTrigger={['onBlur', 'onChange']}
             rules={[
               {
                 required: true,
@@ -228,6 +232,9 @@ export default function Publish() {
               },
             ]}
           >
+            {/* react-quill是基于quill封装的一个react组件 */}
+            {/* 第三步使用组件，引入后报warning,componentWillReceiveProps has been renamed,这个钩子函数可能会被废弃，但目前没有办法修改。组件报错：Error:You are passing the `delta` object from the `onChange`event back as `value`.You must probably want `editor.getContents()`instead.See:https://github.com/zenoamaro/react-quill#using-deltas,说明要给quill value属性，但是form组件就会给一个value属性，不用再quill 上直接加value。form组件给value的前提是给Form 一个初始值initialValues属性。 initialValues={{ content: ''}},
+             */}
             <ReactQuill></ReactQuill>
           </Form.Item>
           {/* wrapperCol内容占比 */}
