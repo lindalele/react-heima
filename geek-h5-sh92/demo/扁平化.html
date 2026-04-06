@@ -1,0 +1,7 @@
+<!-- 参数是层级 品评几层 -->
+arr.flat(2) const arr = ['hello world', 'hello react', ['hello vue', 'hello
+angular', ['hello koa', 'hello node'] const arr1=arr.map(item=>item.split(' '))
+const res=arr1.flat()
+<!-- 这两个操作可以合并成一个flatMap,flatMap的效率跟高一些 -->
+const newarr= arr.flatMap(item=>item.split(' '))
+<!-- flat给一个数组，就扁平化。flatMap给一个数组，先map，得到一个数组再扁平化 -->

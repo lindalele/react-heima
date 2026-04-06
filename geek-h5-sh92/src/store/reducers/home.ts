@@ -34,22 +34,34 @@ const homeState: HomeStateType = {
   articles: {},
 }
 
-const home = produce((draft, action: HomeAction) => {
+const home = produce((state, action: HomeAction) => {
   switch (action.type) {
+    case 'home/saveUserChannels': {
+      return {
+        ...state,
+        userChannels: action.payload,
+      }
+    }
+    case 'home/saveALLChannels': {
+      return {
+        ...state,
+        allChannels: action.payload,
+      }
+    }
     case 'home/getArticleList': {
       // 需要在原来的基础上追加results数据
-      const old = draft.articles[action.payload.channel_id]?.results || []
+      const old = state.articles[action.payload.channel_id]?.results || []
       // console.log('old', old)
-      draft.articles[action.payload.channel_id] = {
+      state.articles[action.payload.channel_id] = {
         timestamp: action.payload.timestamp,
         results: [...old, ...action.payload.results],
       }
       break
     }
     case 'home/getNewArticleList': {
-      // const old = draft.articles[action.payload.channel_id]?.results || []
+      // const old = state.articles[action.payload.channel_id]?.results || []
 
-      draft.articles[action.payload.channel_id] = {
+      state.articles[action.payload.channel_id] = {
         timestamp: action.payload.timestamp,
         results: [...action.payload.results],
       }
@@ -83,7 +95,7 @@ const home = produce((draft, action: HomeAction) => {
           ...state.channelArticles,
           [channel_id]: {
             timestamp: +timestamp,
-            articles: [...articles, ...old],
+            articles: [...articles],
           },
         },
       }

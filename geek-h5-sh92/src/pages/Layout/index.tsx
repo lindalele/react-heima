@@ -1,8 +1,7 @@
 import styles from './index.module.scss'
 import { TabBar } from 'antd-mobile'
 import Icon from '@/components/icon'
-import { useHistory, useLocation } from 'react-router-dom'
-import { Route, Switch } from 'react-router-dom'
+import { useHistory, useLocation, Route, Switch } from 'react-router-dom'
 import KeepAlive from '@/components/KeepAlive'
 import PrivateRoute from '@/components/PrivateRoute'
 import React, { Suspense } from 'react'
@@ -54,9 +53,9 @@ export default function Layout() {
           activeKey={location.pathname}
         >
           {tabs.map((item) => (
-            // icon支持写dom,icon={<Icon type={item.icon}></Icon>}
+            //icon支持Reactnode,说明可以写组件/结构 icon支持写dom,icon={<Icon type={item.icon}></Icon>}
             //支持函数写法
-            //  icon={(active:boolean)=> (
+            //item.icon是个变量  icon={(active:boolean)=> (
             //   <Icon type={active? `${item.icon}_sel` : item.icon}></Icon>
             // )
             // }

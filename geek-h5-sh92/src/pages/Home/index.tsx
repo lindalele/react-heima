@@ -20,7 +20,7 @@ import { useHistory } from 'react-router'
 const Home = () => {
   // 使用自定义hook获取用户频道列表和当前激活的频道
   const { userChannels, active } = useInitialState(getUserChannel, 'channel')
-  // 获取所有频道列表
+  // 获取所有频道列表,这里只要发送请求即可
   useInitialState(getAllChannel, 'channel')
   // 获取dispatch函数用于状态管理
   const dispatch = useDispatch()
@@ -36,6 +36,7 @@ const Home = () => {
   return (
     <div className={styles.root}>
       {/* 频道 Tabs 列表 */}
+      {/* userChannels是发请求获取的，一开始是【】，组件问题，第一次设置高亮，所以数据来了，但是***没有高亮，所以这里需要加一个判断，如果userChannels.length>0，才渲染Tabs */}
       {userChannels.length > 0 && (
         <Tabs
           className="tabs"

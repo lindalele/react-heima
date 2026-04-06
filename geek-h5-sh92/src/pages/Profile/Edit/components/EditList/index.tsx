@@ -4,6 +4,14 @@ type Props = {
   type: '' | 'photo' | 'gender'
   onUpdate: (key: string, value: string) => void
 }
+const genderList = [
+  { title: '男', value: '0' },
+  { title: '女', value: '1' },
+]
+const photoList = [
+  { title: '拍照', value: '0' },
+  { title: '本地选择', value: '1' },
+]
 const EditList = ({ hideList, type, onUpdate }: Props) => {
   return (
     <div className={styles.root}>

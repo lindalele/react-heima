@@ -41,6 +41,8 @@ function App() {
             </Route>
 
             {/* 修改用户信息 */}
+            {/* 4个tab是二级路由，以及路由是登录和、layout; -》path: '/home/profile', icon: 'iconbtn_mine', text: '我的' */}
+            {/* 这一个个人信息编辑用一级路由，和/login同级别（path可以写2层），不能在profile下配置三级路由，因为这个页面是整个页面，没有下面的tab,配置了三级路由说明是/home/profile的子组件，一个出口，页面会显示很小，无法全屏 */}
             <PrivateRoute path="/profile/edit" exact>
               <ProfileEdit></ProfileEdit>
             </PrivateRoute>

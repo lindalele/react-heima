@@ -42,7 +42,9 @@ export type Channel = {
   id: number
   name: string
 }
-
+export type UserChannels = {
+  channels: Channel[]
+}
 // 文章类型
 export type Article = {
   art_id: string

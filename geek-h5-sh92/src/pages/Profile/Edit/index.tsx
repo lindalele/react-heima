@@ -52,7 +52,7 @@ const ProfileEdit = () => {
       type: '',
     })
   }
-
+  // dom需要给个null
   const fileRef = useRef<HTMLInputElement>(null)
   const onUpdate = async (type: string, value: string) => {
     if (type === 'photo') {
@@ -81,6 +81,7 @@ const ProfileEdit = () => {
     // 通过e获取到上传那个文件
     const file = e.target.files![0]
     // 图片校验 size type
+    // 上传必须用FormData
     const fd = new FormData()
     fd.append('photo', file)
     // 发送请求进行修改头像

@@ -9,14 +9,18 @@ import { addChannel, changeActive, delChannel } from '@/store/actions/channel'
 import { Channel } from '@/types/data'
 import { useState } from 'react'
 import { Toast } from 'antd-mobile'
+// 接收hide函数
 type Props = {
   hide: () => void
 }
+// 封装的useInitialState是发请求才需要的，这里不用发请求，直接用useSelector获取数据
 const Channels = ({ hide }: Props) => {
   const {
     channel: { userChannels, allChannels, active },
-  } = useSelector((state: RootState) => state)
+  } = useSelector((state: RootState) => state.home)
+
   const dispatch = useDispatch()
+
   // 获取推荐的频道 = 所有的频道 - 用户的频道 [1,2,3,4,5]   [2,3]
   // 从数组中排除掉另一个数组中的值
   // const optionsChannels = allChannels.filter((item) => {

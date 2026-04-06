@@ -1,3 +1,14 @@
 .app {
   height: 100%;
+  // 加在这里的样式，全局生效
+  .adm-list-default {
+    border: none;
+    font-size: 16px;
+  }
+  .adm-nav-bar-title {
+    font-size: 16px;
+  }
+  .adm-nav-bar-back-arrow {
+    font-size: 16px;
+  }
 }
