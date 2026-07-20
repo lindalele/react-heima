@@ -103,12 +103,17 @@ export default function Publish() {
   const onTypeChange = (e) => {
     const count = e.target.value
     setType(count)
+    // 注意type是异步的，这里不能写type,应该用e.target.value*****
+    // 切换radio的时候，去拿的是fileRef，fileRef不变，变的是fileList
     setFileList(fileRef.current.slice(0, count))
   }
+  // 上传onChange拿到的是e,文档里面写的是结构后的file和fileList
   const onChange = ({ fileList }) => {
     // 图片在变化
     setFileList(fileList)
+    // 上传后存储起来，这个额数据不变
     fileRef.current = fileList
+    // 当切换单图 三图的时候，触发下面的图片数量的校验
     formRef.current.validateFields(['type'])
   }
 
@@ -181,6 +186,10 @@ export default function Publish() {
             {/* 如果是dom都是一样的，可以封装成一个组件 */}
             <Channel></Channel>
           </Form.Item>
+          {/* Form.Item组件的值只有在最后提交的时候才会被收集，所以需要使用Form.Item组件的name属性，来指定收集的key，但是我们需要切换就拿到数据，这个时候就可以自定义，就像upload组件一样，自己定义一个数据，去set */}
+          {/* Form.Item写了一个name,就相当于是给了一个value和onChange，去除name属性，自己提供radio的value和onChange */}
+          {/* 方式2：如果不希望最后提交的时候自己拿着radio的数据自己去校验，那么可以使用Form.Item组件的name属性，使用form自带的校验的功能  */}
+          {/* 注意是切换radio的时候有校验，但upload的时候，没有校验，所以我们还需要再上传和删除图片的时候再加校验 */}
           <Form.Item
             label="封面"
             name="type"
@@ -203,11 +212,15 @@ export default function Publish() {
             </Radio.Group>
           </Form.Item>
           {type > 0 && (
+            // 一个    Form.Item不能放多个值，所以upload要单独放在一个form.item中,Form组件会收集表单数据，但是upload组件没有value和onChange，
+            // 是没有这两个属性的《Upload value="" onChange=""》，Form收集的是有value属性的表单控件
+            // 所以需要自定义,upload组件是通过fileList来控制上传的图片,所以我们自己定义了一个fileList数据
             <Form.Item wrapperCol={{ offset: 4, span: 20 }}>
               {/* 
               fileList: 控制上传的图片
               action: 上传的地址
               name: 上传的文件的名字 默认file
+              自动发送请求的时候发的是FormData,key是file,value是图片的binary数据。upload组件的name属性就是FormData的key
             */}
               <Upload
                 listType="picture-card"
