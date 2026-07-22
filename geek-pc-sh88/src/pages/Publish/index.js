@@ -104,7 +104,7 @@ export default function Publish() {
     const count = e.target.value
     setType(count)
     // 注意type是异步的，这里不能写type,应该用e.target.value*****
-    // 切换radio的时候，去拿的是fileRef，fileRef不变，变的是fileList
+    // 切换radio的时候，去拿的是fileRef，fileRef不变，变的是fileList，slice不改变数组，就能做到3-》1，1-》3,的时候数据3个还在。
     setFileList(fileRef.current.slice(0, count))
   }
   // 上传onChange拿到的是e,文档里面写的是结构后的file和fileList

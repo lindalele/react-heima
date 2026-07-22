@@ -31,6 +31,8 @@ const NotFound = React.lazy(() => import('./pages/NotFound'))
 // npx create-react-app geek-pc-88
 
 export default function App() {
+  // BrowserRouter = Router + createBrowserHistory
+  //  <Router history={history}></Router>等价于<BrowserRouter></BrowserRouter>，这样写的目的是能到history导出去，让非react组件也能使用history,因为如果用BrowserRouter，history是在BrowserRouter里面的的，不能在非组件使用
   return (
     <Router history={history}>
       <div className="app">
